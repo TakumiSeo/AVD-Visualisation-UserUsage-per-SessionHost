@@ -1,3 +1,4 @@
+let HostPoolId = '<hostppol resource id>';
 let TimeRangeEnd = now();  // 現在の時間  
 let TimeRangeStart = TimeRangeEnd - 30m;  // 現在の時間からx前  
 // 仮想マシンの開始イベントを取得  
@@ -43,7 +44,7 @@ let HostOnTime =
 // 各ユーザーごとの稼働時間を計算  
 let UserUsageTime =   
     WVDConnections  
-    | where _ResourceId =~ '/subscriptions/3fc8cdf2-4aee-4d5b-bf40-7c1ed06e6175/resourcegroups/rg-env-avd/providers/Microsoft.DesktopVirtualization/hostpools/Collection-01'  
+    | where _ResourceId =~ HostPooId  
     | where State == "Started" and TimeGenerated between (TimeRangeStart .. TimeRangeEnd)  
     | extend StartTime = TimeGenerated  
     | join kind=leftouter (  
