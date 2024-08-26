@@ -44,7 +44,7 @@ let HostOnTime =
 // 各ユーザーごとの稼働時間を計算  
 let UserUsageTime =   
     WVDConnections  
-    | where _ResourceId =~ HostPooId  
+    | where _ResourceId contains HostPooId  
     | where State == "Started" and TimeGenerated between (TimeRangeStart .. TimeRangeEnd)  
     | extend StartTime = TimeGenerated  
     | join kind=leftouter (  
