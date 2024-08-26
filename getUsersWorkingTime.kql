@@ -3,7 +3,7 @@ let TimeRangeEnd = now();  // 現在の時間
 let TimeRangeStart = TimeRangeEnd - 24h;  // 現在の時間から24時間前  
   
 WVDConnections  
-| where _ResourceId =~ HostPoolId
+| where _ResourceId contains HostPoolId
 | where State == "Started" and TimeGenerated between (TimeRangeStart .. TimeRangeEnd)  
 | extend StartTime = TimeGenerated  
 | join kind=leftouter(  
