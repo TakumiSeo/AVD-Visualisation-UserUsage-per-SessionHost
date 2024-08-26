@@ -1,0 +1,18 @@
+let HostPoolId = '<host pool resource id>'
+let TimeRangeEnd = now();  // 現在の時間  
+let TimeRangeStart = TimeRangeEnd - 24h;  // 現在の時間から24時間前  
+  
+WVDConnections  
+| where _ResourceId =~ HostPoolId
+| where State == "Started" and TimeGenerated between (TimeRangeStart .. TimeRangeEnd)  
+| extend StartTime = TimeGenerated  
+| join kind=leftouter(  
+    WVDConnections  
+    | where State == "Completed"  
+    | extend EndTime = TimeGenerated  
+) on CorrelationId  
+| extend EndTime = coalesce(EndTime, TimeRangeEnd)  
+| where EndTime >= TimeRangeStart  
+| extend Duration = min_of(EndTime, TimeRangeEnd) - max_of(StartTime, TimeRangeStart)  
+| summarize Duration = sum(Duration) by UserName, Host = trim_end(@"\..*", SessionHostName)  
+| project UserName, Host,  UsageHours = round(Duration / 1h, 4)
