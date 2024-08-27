@@ -4,7 +4,8 @@ Azure Virtual Desktop において ユーザーごとの任意のセッション
 * ユーザーごとのコストの詳細な配賦も割合によって導出可能
 
 **getRatioUserTimeOnVMs.kql:**
-![image](https://github.com/user-attachments/assets/96f0224a-c025-490d-a66b-74258808f31c)
+![image](https://github.com/user-attachments/assets/f01e0176-e15b-4137-8433-aeefc9931ba5)
+セッションホストごとにユーザーがマッピングされる
 
 **getUsersWorkingTime.kql:**
 ![image](https://github.com/user-attachments/assets/10d7add3-63a0-4e31-9fae-c6fab5e0e796)
