@@ -5,6 +5,7 @@ Azure Virtual Desktop において ユーザーごとの任意のセッション
 
 **getRatioUserTimeOnVMs.kql:**
 ![image](https://github.com/user-attachments/assets/f01e0176-e15b-4137-8433-aeefc9931ba5)
+
 セッションホストごとにユーザーがマッピングされる
 
 **getUsersWorkingTime.kql:**
